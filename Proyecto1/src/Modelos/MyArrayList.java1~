@@ -1,0 +1,112 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelos;
+
+public class MyArrayList<i>
+{
+    private static final int tamMax = 50;// tamaño maximo de elementso 
+    private Object elementos[];// conjunto de elementos de una lista
+    private int nElementos; // numero de elementos en una lista
+    
+    public MyArrayList()
+    {
+        elementos = new Object[tamMax];
+        nElementos = 0;
+        
+    }
+    public MyArrayList(int i)
+    {
+        elementos = new Object[i*2];
+        nElementos = i;
+    }
+    
+    public void Vaciar()
+    {
+        nElementos = 0;
+    }
+    public int size()
+    {
+        return nElementos;
+    }
+    
+    public boolean isEmpty() {
+        return nElementos == 0;
+    }  
+    
+    public boolean add(Object ele)
+    {
+        if(nElementos <= tamMax)// si la lista no esta llena
+        {
+            elementos[nElementos++] = ele;
+            
+        }
+        return true;
+    }
+    
+    public void remove(Object index) 
+    {
+        if (nElementos >= 1) 
+        {
+            int posicion;
+            boolean encontrado = false;
+            
+            posicion = 0;
+            
+            while(posicion < nElementos && !encontrado)
+            {
+                if(elementos[posicion] == index)
+                {
+                    encontrado = true;
+                }
+                else
+                {
+                    posicion++;
+                }
+                
+            }
+            
+            if(encontrado)
+            {
+                while(posicion < nElementos-1)
+                {
+                    elementos[posicion] = elementos[posicion+1];
+                    posicion++;
+                }
+                nElementos--;
+            }
+//          //  for (int posicion = index+1; posicion <= size(); posicion++) 
+//            {
+//                elementos[(posicion-1)] = elementos[(posicion)];
+//            }   
+//            nElementos--;//disminuye el Numero elementos de la lista retornando un espacio libre
+        } 
+    }
+    
+    public Object get(int index)
+    {
+       if(index >= 0 && index <= nElementos)
+       {
+           return elementos[index]; 
+       } 
+       return null;
+    }
+    
+    public boolean contains(Object o)
+    {
+        boolean ok = false;
+        int i = 0;
+        while(i < nElementos && !ok)
+        {
+            if(elementos[i].equals(o))
+            {
+                ok = true;
+            }
+            i++;
+        }
+        return ok;        
+    }
+
+}
